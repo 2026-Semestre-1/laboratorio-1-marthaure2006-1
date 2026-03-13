@@ -95,20 +95,55 @@ def sumatoria_V2(inicio, fin, distancia, excepcion):
         return "Error: el parámetro distancia debe ser de tipo entero"
     if not isinstance(excepcion, int):
         return "Error: el parámetro excepcion debe ser de tipo entero"
-    if not (distancia < 10) and (excepcion < 10):
-        return "Error: los párametros distancia y excepcion debe ser menor a 10"
-    if not (distancia > 0) and (excepcion > 0):
-        return "Error: los párametros distancia y excepcion debe ser mayor a 0"
-    if not(inicio > 0) and (fin > 0):
-        return "Error: los valores de inicio y fin deben ser positivos"
-    if distancia < 0:
-        fin < inicio
-    elif distancia > 0:
-        fin > inicio        
+    if (inicio < 0):
+        return "Error: el valor de inicio debe ser positivo"
+    if (fin < 0):
+        return "Error: el valor de fin debe ser positivo"
+    if (-2 < distancia > 10):
+        return "Error: el párametro distancia debe ser menor a 10"
+    if (excepcion > 10):
+        return "Error: el párametro excepcion debe ser menor a 10"
+    if (excepcion < 0):
+        return "Error: el párametro excepcion debe ser mayor a 0"
+
 
     return sumatoria_V2_aux(inicio, fin, distancia, excepcion)
 
 def sumatoria_V2_aux(inicio, fin, distancia, excepcion):
+    if distancia <= 0:
+        if inicio > fin:
+            resultado = 0
+            while inicio >= fin:
+                if excepcion != 0:
+                    if inicio % excepcion == 0:
+                        inicio -= distancia
+                    else:
+                        resultado += inicio
+                        inicio -= distancia
+                else:
+                    resultado += inicio
+                    inicio -= distancia
+
+            return resultado
+        else:
+            return "Error: el rámetro inicio debe ser mayor a fin"
+
+    else:
+        resultado = 0
+        while inicio <= fin:
+            if excepcion != 0:
+                if inicio % excepcion == 0:
+                    inicio += distancia
+                else:
+                    resultado += inicio
+                    inicio += distancia
+            else:
+                resultado += inicio
+                inicio += distancia
+        return resultado
+                
+
+
 
         
             
